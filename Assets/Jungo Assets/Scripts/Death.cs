@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour {
-    private Transform playerTransform;
-
     // Use this for initialization
     void Start () {
-        playerTransform = GameObject.Find("Player").transform;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
         // Check if player is lower than threshold.
-        if (playerTransform.position.y <= -1.5)
+        if (transform.position.y <= -3)
         {
-            Application.Quit();
+            SceneManager.LoadScene(0); // Load Menu scene if dead
+
         }
 	
 	}
