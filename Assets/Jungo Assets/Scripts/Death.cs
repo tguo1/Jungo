@@ -15,7 +15,7 @@ public class Death : MonoBehaviour {
         // Check if player is lower than threshold.
         if (transform.position.y <= DeathThreshold)
         {
-            SceneManager.LoadScene(3); // Load Menu scene if dead
+            SceneManager.LoadScene(3); // Load Death scene if dead
 
         }
 	
