@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour {
+
+    public float DeathThreshold = -1.5f;
     // Use this for initialization
     void Start () {
 
@@ -11,9 +13,9 @@ public class Death : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Check if player is lower than threshold.
-        if (transform.position.y <= -3)
+        if (transform.position.y <= DeathThreshold)
         {
-            SceneManager.LoadScene(0); // Load Menu scene if dead
+            SceneManager.LoadScene(3); // Load Menu scene if dead
 
         }
 	

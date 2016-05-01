@@ -44,7 +44,7 @@ public class Tiling : MonoBehaviour
 	void Update ()
     {
         // Select random ground
-        randGround = Random.Range(1, 4);
+        randGround = Random.Range(1, 5);
         nextGround = ground + randGround;
 
         float camHorizExtend = cam.orthographicSize * Screen.width / Screen.height;
@@ -78,8 +78,11 @@ public class Tiling : MonoBehaviour
     // Clear grounds that are not used.
     void ClearGround(string new_name)
     {
-        // Remove oldest ground
-        Destroy(GameObject.Find(grounds[0]));
+        // Remove oldest ground if it exists
+        if (grounds[0].CompareTo("") != 0)
+        {
+            Destroy(GameObject.Find(grounds[0]));
+        }
 
         // Move new grounds up
         for(int i = 1; i < grounds.Length; i ++)

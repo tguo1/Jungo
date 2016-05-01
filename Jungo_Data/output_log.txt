@@ -16,20 +16,32 @@ Platform assembly: E:\workspace\Jungo\Jungo_Data\Managed\UnityEngine.UI.dll (thi
 Loading E:\workspace\Jungo\Jungo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: E:\workspace\Jungo\Jungo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading E:\workspace\Jungo\Jungo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.133 seconds
+- Completed reload, in  0.061 seconds
 Platform assembly: E:\workspace\Jungo\Jungo_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\workspace\Jungo\Jungo_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.471398 ms
+UnloadTime: 0.587794 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.250465 ms
+UnloadTime: 4.344432 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 360.
-Total: 0.147020 ms (FindLiveObjects: 0.013418 ms CreateObjectMapping: 0.014293 ms MarkObjects: 0.113474 ms  DeleteObjects: 0.005542 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 218.
+Total: 0.334007 ms (FindLiveObjects: 0.030046 ms CreateObjectMapping: 0.018085 ms MarkObjects: 0.267497 ms  DeleteObjects: 0.017794 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.347426 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 227.
+Total: 0.238910 ms (FindLiveObjects: 0.021586 ms CreateObjectMapping: 0.018377 ms MarkObjects: 0.195445 ms  DeleteObjects: 0.002625 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.592170 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 360.
+Total: 0.350343 ms (FindLiveObjects: 0.123684 ms CreateObjectMapping: 0.022169 ms MarkObjects: 0.195445 ms  DeleteObjects: 0.008459 ms)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2874 -> priority: 1 
-  Thread -> id: 2598 -> priority: 1 
+  Thread -> id: 2d88 -> priority: 1 
+  Thread -> id: 3148 -> priority: 1 

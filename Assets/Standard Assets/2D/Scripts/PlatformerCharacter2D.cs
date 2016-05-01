@@ -110,7 +110,7 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
                 // Play jump sound
-                jumpSelection = Random.Range(1, 4);
+                jumpSelection = Random.Range(1, 5);
 
                 switch(jumpSelection)
                 {
@@ -123,7 +123,7 @@ namespace UnityStandardAssets._2D
                     case 3:
                         audio.PlayOneShot(jumpSound3, 0.7f);
                         break;
-                    case 4:
+                    default:
                         audio.PlayOneShot(jumpSound4, 0.7f);
                         break;
                 }
