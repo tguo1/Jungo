@@ -26,7 +26,16 @@ namespace UnityStandardAssets._2D
         public AudioClip jumpSound1;
         public AudioClip jumpSound2;
         public AudioClip jumpSound3;
-        public AudioClip jumpSound4;
+		public AudioClip jumpSound4;
+		private int footstepSelection = 1; // Select between 4 jump sounds
+		public AudioClip footstepSound1;
+		public AudioClip footstepSound2;
+		public AudioClip footstepSound3;
+		public AudioClip footstepSound4;
+		public AudioClip footstepSound5;
+		public AudioClip footstepSound6;
+		public AudioClip footstepSound7;
+		private bool isLanding = false;
 
         private AudioSource audio;
 
@@ -38,12 +47,15 @@ namespace UnityStandardAssets._2D
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-            audio = GetComponent<AudioSource>();
+			audio = GetComponent<AudioSource>();
         }
 
 
         private void FixedUpdate()
         {
+			if (m_Grounded == false) {
+				isLanding = true;
+			}
             m_Grounded = false;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -51,10 +63,15 @@ namespace UnityStandardAssets._2D
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject)
-                    m_Grounded = true;
+				if (colliders [i].gameObject != gameObject) {
+					m_Grounded = true;
+					if (isLanding)
+						PlayFootsteps ();
+					isLanding = false;
+				}
             }
             m_Anim.SetBool("Ground", m_Grounded);
+			/**********************************************************/
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
@@ -141,5 +158,36 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+
+		private void PlayFootsteps() {
+			if (m_Grounded == true) {
+				// Play footstep sound
+				footstepSelection = Random.Range (1, 8);
+			
+				switch (footstepSelection) {
+				case 1:
+					audio.PlayOneShot (footstepSound1, 0.3f);
+					break;
+				case 2:
+					audio.PlayOneShot (footstepSound2, 0.3f);
+					break;
+				case 3:
+					audio.PlayOneShot (footstepSound3, 0.3f);
+					break;
+				case 4:
+					audio.PlayOneShot (footstepSound4, 0.3f);
+					break;
+				case 5:
+					audio.PlayOneShot (footstepSound5, 0.3f);
+					break;
+				case 6:
+					audio.PlayOneShot (footstepSound6, 0.3f);
+					break;
+				default:
+					audio.PlayOneShot (footstepSound7, 0.3f);
+					break;
+				}
+			}
+		}
     }
 }

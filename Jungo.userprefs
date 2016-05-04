@@ -1,8 +1,9 @@
-﻿<Properties StartupItem="Jungo.CSharp.Plugins.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Tiling.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Jungo Assets\Scripts\LoadOnClick.cs">
     <Files>
-      <File FileName="Assets\Tiling.cs" Line="4" Column="44" />
+      <File FileName="Assets\Jungo Assets\Scripts\LoadOnClick.cs" Line="10" Column="6" />
+      <File FileName="Assets\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" Line="50" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
