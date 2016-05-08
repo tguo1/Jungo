@@ -21,7 +21,7 @@ public class Tiling : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        myTransform = GameObject.Find("Ground4").transform;
+        myTransform = GameObject.Find("Ground1_Clone").transform;
         myScale = myTransform.localScale.x;
 
         grounds = new string[4];

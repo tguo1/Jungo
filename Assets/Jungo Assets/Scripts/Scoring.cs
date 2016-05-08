@@ -4,8 +4,8 @@ using System.Collections;
 
 public class Scoring : MonoBehaviour {
 
-    public Text scoreText;
-    private static int score = 0;
+    public Text[] scoreText;
+    private static int[] highscores = { 0, 0, 0, 0, 0 }; 
 
     private float start = 0;
 
@@ -15,6 +15,7 @@ public class Scoring : MonoBehaviour {
 
     void Awake()
     {
+        // If player exist, we are in the game scene.
         PlayerExist = (GameObject.FindGameObjectWithTag("Player") != null);
         if (PlayerExist)
         {
@@ -26,10 +27,17 @@ public class Scoring : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        // Only update high scores if we are not in game scene
         if (PlayerExist)
-            scoreText.text = "Score: " + score;
+            scoreText[0].text = "Score: " + Global.score;
         else
-            scoreText.text = "" + score;
+        {
+            UpdateHighScores(Global.score);
+            for (int i = 0; i < highscores.Length; i ++)
+            {
+                scoreText[i].text = "" + highscores[i];
+            }
+        }
     }
 	
 	// Update is called once per frame
@@ -39,8 +47,32 @@ public class Scoring : MonoBehaviour {
         if (PlayerExist)
         {
             playerTransform = GameObject.Find("Player").transform;
-            score = (int)(playerTransform.position.x - start);
-            scoreText.text = "Score: " + score;
+            //Global.UpdateScore(playerTransform.position.x - start);
+            scoreText[0].text = "Score: " + Global.score;
+        }
+    }
+
+    // Place score in high score list
+    void UpdateHighScores(int score)
+    {
+        int i, temp1 = 0, temp2 = 0;
+
+        for (i = 0; i < highscores.Length; i ++)
+        {
+            if (score > highscores[i])
+            {
+                temp1 = highscores[i];
+                highscores[i] = score;
+                break;
+            }
+        }
+
+        // Shift rest of scores down
+        for (i = i + 1; i < highscores.Length; i ++)
+        {
+            temp2 = highscores[i];
+            highscores[i] = temp1;
+            temp1 = temp2;
         }
     }
 }

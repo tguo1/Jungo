@@ -9,7 +9,6 @@ namespace UnityStandardAssets._2D
     {
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
@@ -23,18 +22,10 @@ namespace UnityStandardAssets._2D
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
         private int jumpSelection = 1; // Select between 4 jump sounds
-        public AudioClip jumpSound1;
-        public AudioClip jumpSound2;
-        public AudioClip jumpSound3;
-		public AudioClip jumpSound4;
-		private int footstepSelection = 1; // Select between 4 jump sounds
-		public AudioClip footstepSound1;
-		public AudioClip footstepSound2;
-		public AudioClip footstepSound3;
-		public AudioClip footstepSound4;
-		public AudioClip footstepSound5;
-		public AudioClip footstepSound6;
-		public AudioClip footstepSound7;
+        public AudioClip[] jumpSound;
+		private int footstepSelection = 1; // Select between 7 foot step sounds
+		public AudioClip[] footstepSound;
+
 		private bool isLanding = false;
 
         private AudioSource audio;
@@ -80,25 +71,9 @@ namespace UnityStandardAssets._2D
 
         public void Move(float move, bool crouch, bool jump)
         {
-            // If crouching, check to see if the character can stand up
-            if (!crouch && m_Anim.GetBool("Crouch"))
-            {
-                // If the character has a ceiling preventing them from standing up, keep them crouching
-                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-                {
-                    crouch = true;
-                }
-            }
-
-            // Set whether or not the character is crouching in the animator
-            m_Anim.SetBool("Crouch", crouch);
-
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)
             {
-                // Reduce the speed if crouching by the crouchSpeed multiplier
-                move = (crouch ? move*m_CrouchSpeed : move);
-
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
@@ -127,23 +102,8 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
                 // Play jump sound
-                jumpSelection = Random.Range(1, 5);
-
-                switch(jumpSelection)
-                {
-                    case 1:
-                        audio.PlayOneShot(jumpSound1, 0.7f);
-                        break;
-                    case 2:
-                        audio.PlayOneShot(jumpSound2, 0.7f);
-                        break;
-                    case 3:
-                        audio.PlayOneShot(jumpSound3, 0.7f);
-                        break;
-                    default:
-                        audio.PlayOneShot(jumpSound4, 0.7f);
-                        break;
-                }
+                jumpSelection = Random.Range(0, 4);
+                audio.PlayOneShot(jumpSound[jumpSelection], 0.7f);
             }
         }
 
@@ -162,31 +122,8 @@ namespace UnityStandardAssets._2D
 		private void PlayFootsteps() {
 			if (m_Grounded == true) {
 				// Play footstep sound
-				footstepSelection = Random.Range (1, 8);
-			
-				switch (footstepSelection) {
-				case 1:
-					audio.PlayOneShot (footstepSound1, 0.3f);
-					break;
-				case 2:
-					audio.PlayOneShot (footstepSound2, 0.3f);
-					break;
-				case 3:
-					audio.PlayOneShot (footstepSound3, 0.3f);
-					break;
-				case 4:
-					audio.PlayOneShot (footstepSound4, 0.3f);
-					break;
-				case 5:
-					audio.PlayOneShot (footstepSound5, 0.3f);
-					break;
-				case 6:
-					audio.PlayOneShot (footstepSound6, 0.3f);
-					break;
-				default:
-					audio.PlayOneShot (footstepSound7, 0.3f);
-					break;
-				}
+				footstepSelection = Random.Range (0, 7);
+                audio.PlayOneShot(footstepSound[footstepSelection], 0.3f);
 			}
 		}
     }

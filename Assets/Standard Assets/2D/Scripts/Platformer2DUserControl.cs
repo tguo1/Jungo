@@ -30,10 +30,9 @@ namespace UnityStandardAssets._2D
         private void FixedUpdate()
         {
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.LeftControl);
             // Pass all parameters to the character control script.
             // Character will always move right.
-            m_Character.Move(1, crouch, m_Jump);
+            m_Character.Move(1, false, m_Jump);
             m_Jump = false;
         }
     }
