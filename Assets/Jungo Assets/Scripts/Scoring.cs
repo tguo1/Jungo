@@ -29,11 +29,14 @@ public class Scoring : MonoBehaviour {
     {
         // Only update high scores if we are not in game scene
         if (PlayerExist)
+        {
+            Global.score = 0;
             scoreText[0].text = "Score: " + Global.score;
+        }
         else
         {
             UpdateHighScores(Global.score);
-            for (int i = 0; i < highscores.Length; i ++)
+            for (int i = 0; i < highscores.Length; i++)
             {
                 scoreText[i].text = "" + highscores[i];
             }

@@ -15,9 +15,8 @@ public class CoinCollect : MonoBehaviour {
     {
         if (col.gameObject.name == "Player")
         {
-            audio.PlayOneShot(coinSound, 1f);
+            AudioSource.PlayClipAtPoint(coinSound, Camera.main.transform.position);
             Global.UpdateScore(10);
-
             Destroy(this.gameObject);
         }
     }
