@@ -24,12 +24,12 @@ public class Tiling : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        myTransform = GameObject.Find("Tile1").transform;
+        myTransform = GameObject.Find("Tile0").transform;
         myScale = myTransform.localScale.x;
 
         x_pos = myTransform.position.x;
         y_pos = myTransform.position.y;
-        num_tiles = 1;
+        num_tiles = 0;
 
         garbage_collect = false; // Flag set to true when we need to clear old tiles
         prev_ground = true; // This flag set to true if we created a tile. Used to determine if we need to add hole
@@ -94,15 +94,30 @@ public class Tiling : MonoBehaviour
         {
             x_pos += spriteWidth;
             y_pos += spriteWidth * direction;
+            if (direction == 1)
+            {
+                groundName = "TileUp";
+            }
+            else if(direction == -1)
+            {
+                groundName = "TileDown";
+            }
+            else
+            {
+                groundName = "Tile0";
+            }
 
             // If ground too low, raise the ground
             if (y_pos < -1.4)
             {
                 y_pos -= 2 * spriteWidth * direction;
+                groundName = "TileUp";
             }
-            else if(y_pos > 20)
+            // If ground too high, lower the ground
+            else if (y_pos > 20)
             {
                 y_pos -= 2 * spriteWidth * direction;
+                groundName = "TileDown";
             }
 
             Vector3 newPosition = new Vector3(x_pos, y_pos, myTransform.position.z);
